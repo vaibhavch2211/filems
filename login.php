@@ -30,6 +30,11 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		if($username == $user[$i]){
 			if($password == $pass[$i]){
 				echo "you are logged in";
+				session_start();
+				$_SESSION['username']=$username;
+				//Header("Location:/~hajari/php/user_login/$username/welcome.php");
+				
+				Header("Location:./$username/welcome.php");
 
 			}else{
 				echo "incorrect password";
@@ -42,4 +47,3 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 	}
 }
 ?>
-
