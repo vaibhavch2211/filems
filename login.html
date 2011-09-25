@@ -22,22 +22,28 @@ $pass = array("pass1","pass2");
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+$isuser = 0; //isuser will be 1 if username exists in user array
 if(isset($_POST['username']) && isset($_POST['password'])){
 	//iterate through all elements of user array to check whether the 
-	//entered username in the array.
-	for($i=0;$i<$user.length;$i++){
+	//entererd username in the array.
+	for($i=0;$i<2;$i++){
 		if($username == $user[$i]){
 			if($password == $pass[$i]){
 				echo "you are logged in";
 				session_start();
 				$_SESSION['username']=$username;
 				//Header("Location:/~hajari/php/user_login/$username/welcome.php");
-				Header("Location:./filemanager.php");
-			} else {
-				echo "incorrect username or password";
+				
+				Header("Location:./$username/welcome.php");
+
+			}else{
+				echo "incorrect password";
 			}
+			$isuser = 1;
 		}
 	}
-	echo "user does not exist";
+	if($isuser == 0){
+		echo "user does not exist";
+	}
 }
 ?>
